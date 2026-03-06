@@ -1,0 +1,11 @@
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\bin\Debug\net8.0\Vinculaciones.Domain.deps.json
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\bin\Debug\net8.0\Vinculaciones.Domain.dll
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\bin\Debug\net8.0\Vinculaciones.Domain.pdb
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\Vinculaciones.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\Vinculaciones.Domain.AssemblyInfoInputs.cache
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\Vinculaciones.Domain.AssemblyInfo.cs
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\Vinculaciones.Domain.csproj.CoreCompileInputs.cache
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\Vinculaciones.Domain.dll
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\refint\Vinculaciones.Domain.dll
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\Vinculaciones.Domain.pdb
+D:\code\portafolio\vinculaciones\vinculaciones-backend-saas\Core\Vinculaciones.Domain\obj\Debug\net8.0\ref\Vinculaciones.Domain.dll
