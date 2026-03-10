@@ -1,4 +1,6 @@
+using System;
 using Vinculaciones.Domain.Entities;
+namespace Vinculaciones.Domain.Entities;
 
 public class AdditionalDataUser
 {
