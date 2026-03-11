@@ -4,6 +4,7 @@ namespace Vinculaciones.Persistence.Repositories;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Vinculaciones.Application.dtos.User;
 using Vinculaciones.Application.interfaces.repositories;
 using Vinculaciones.Application.usecases.users.register;
 using Vinculaciones.Domain.Entities;
@@ -18,13 +19,13 @@ public class UserRepository : IUserRepository
         _context = context;
         _mapper = mapper;
     }
-    public async Task<User?> CreateAsync(RegisterUserRequest request)
+    public async Task<User?> CreateAsync(CreateUserDto userDto)
     {
         var UserEntity = new PersistenceUser()
         {
-            Username = request.Username,
-            Email = request.Email,
-            Password = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            Username = userDto.Username,
+            Email = userDto.Email,
+            Password = userDto.Password,
             CreatedAt = DateTime.Now
         };
         await _context.Users.AddAsync(UserEntity);
@@ -44,5 +45,16 @@ public class UserRepository : IUserRepository
     {
         bool existUsername = await _context.Users.AnyAsync(u => u.Username.ToLower().Trim() == username.ToLower().Trim());
         return existUsername;
+    }
+
+    public async Task<User?> FindByEmail(string email)
+    {
+        var UserEntity = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower().Trim() == email.ToLower().Trim());
+        if (UserEntity == null)
+        {
+            return null;
+        }
+        var UserModel = _mapper.Map<User>(UserEntity);
+        return UserModel;
     }
 }

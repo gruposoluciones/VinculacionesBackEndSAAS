@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Folder Include="common\" />
-    <Folder Include="dtos\" />
+    <Folder Include="dtos\User\" />
     <Folder Include="usecases\" />
     <Folder Include="usecases\users\" />
     <Folder Include="usecases\users\register\" />

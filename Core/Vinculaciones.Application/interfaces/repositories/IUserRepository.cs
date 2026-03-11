@@ -1,4 +1,5 @@
 using System;
+using Vinculaciones.Application.dtos.User;
 using Vinculaciones.Application.usecases.users.register;
 using Vinculaciones.Domain.Entities;
 
@@ -8,5 +9,6 @@ public interface IUserRepository
 {
     Task<bool> ExistsByEmail(string email);
     Task<bool> ExistsByUsername(string username);
-    Task<User?> CreateAsync(RegisterUserRequest request);
+    Task<User?> CreateAsync(CreateUserDto request);
+    Task<User?> FindByEmail(string email);
 }

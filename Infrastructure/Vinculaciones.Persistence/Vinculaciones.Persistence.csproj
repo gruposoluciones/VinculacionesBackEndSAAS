@@ -19,6 +19,7 @@
     <Folder Include="Gateways\" />
     <Folder Include="Mappers\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
