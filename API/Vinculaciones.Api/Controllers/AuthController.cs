@@ -7,6 +7,7 @@ using Vinculaciones.Api.extensions;
 using Vinculaciones.Application.common;
 using Vinculaciones.Application.dtos;
 using Vinculaciones.Application.gateways;
+using Vinculaciones.Application.usecases.users.login;
 using Vinculaciones.Application.usecases.users.register;
 
 namespace Vinculaciones.Api.Controllers
@@ -46,6 +47,33 @@ namespace Vinculaciones.Api.Controllers
                 data: result.Value?.UserDto,
                 error: result.Error
             );
+            return StatusCode((int)result.ResultCode, response);
+        }
+        [HttpPost("login", Name = "Login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Login([FromBody] LoginUserRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                var responseModel = new ApiResponse<LoginUserResponse, List<ErrorField>>(
+                statusCode: 400,
+                success: false,
+                data: null,
+                error: ModelState.ToErrorList()
+            );
+                return StatusCode(400, responseModel);
+            }
+            var result = await _authGateway.Login(request);
+            var response = new ApiResponse<LoginUserResponse, string>(
+                statusCode: (int)result.ResultCode,
+                success: result.Success,
+                data: result.Value,
+                error: result.Error
+            );
+            //Hacer append de token (pending)
             return StatusCode((int)result.ResultCode, response);
         }
     }
