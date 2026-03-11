@@ -2,8 +2,10 @@ using System;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Vinculaciones.Application.interfaces.repositories;
+using Vinculaciones.Application.interfaces.services;
 using Vinculaciones.Persistence.Mappers;
 using Vinculaciones.Persistence.Repositories;
+using Vinculaciones.Persistence.Services;
 
 namespace Vinculaciones.Persistence;
 
@@ -13,8 +15,12 @@ public static class DependencyInjection
     {
         services.AddAutoMapper(typeof(UserEntityMappingProfile).Assembly);
 
+        //Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAdditionalDataUserRepository, AdditionalDataUserRepository>();
+
+        //Services
+        services.AddScoped<IPasswordService, PasswordService>();
 
         return services;
     }
