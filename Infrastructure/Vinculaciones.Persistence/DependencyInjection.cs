@@ -6,6 +6,8 @@ using Vinculaciones.Application.interfaces.services;
 using Vinculaciones.Persistence.Mappers;
 using Vinculaciones.Persistence.Repositories;
 using Vinculaciones.Persistence.Services;
+using Vinculaciones.Application.interfaces.services;
+using Vinculaciones.Persistence.Services;
 
 namespace Vinculaciones.Persistence;
 
@@ -21,6 +23,7 @@ public static class DependencyInjection
 
         //Services
         services.AddScoped<IPasswordService, PasswordService>();
+        services.AddScoped<IJwtService, JwtService>();
 
         return services;
     }

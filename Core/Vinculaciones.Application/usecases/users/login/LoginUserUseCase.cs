@@ -10,10 +10,14 @@ public class LoginUserUseCase
 {
     private readonly IUserRepository _userRepository;
     private readonly IPasswordService _passwordService;
-    public LoginUserUseCase(IUserRepository userRepository, IPasswordService passwordService)
+
+    private readonly IJwtService _jwtService;
+
+    public LoginUserUseCase(IUserRepository userRepository,IPasswordService passwordService,IJwtService jwtService)
     {
         _userRepository = userRepository;
         _passwordService = passwordService;
+        _jwtService = jwtService;
     }
     public async Task<Result<LoginUserResponse>> Execute(LoginUserRequest request)
     {
@@ -26,10 +30,14 @@ public class LoginUserUseCase
         {
             return Result<LoginUserResponse>.Fail("Credenciales inválidas", ResultCode.Unauthorized);
         }
+
+        var token = _jwtService.GenerateToken(user.Id, user.Email);
+
         return Result<LoginUserResponse>.Ok(new LoginUserResponse
         {
             Id = user.Id,
-            Username = user.Username
+            Username = user.Username,
+            Token = token
         });
     }
 }
