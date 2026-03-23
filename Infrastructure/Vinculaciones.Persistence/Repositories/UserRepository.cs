@@ -57,4 +57,30 @@ public class UserRepository : IUserRepository
         var UserModel = _mapper.Map<User>(UserEntity);
         return UserModel;
     }
+
+    public async Task<AuthUserDto?> FindUserForLogin(string email)
+{
+    return await (
+        from u in _context.Users
+        join uer in _context.UsersEstablishmentsRoles
+            on u.Id equals uer.UserId
+        join r in _context.Roles
+            on uer.RoleId equals r.Id
+
+        where u.Email == email
+            && u.Enabled == true
+            && uer.Enabled == true
+
+        select new AuthUserDto
+        {
+            UserId = u.Id,
+            Username = u.Username,
+            Password = u.Password,
+
+            RoleId = r.Id,
+            RoleName = r.Name,
+            EstablishmentId = uer.EstablecimientoId
+        }
+    ).FirstOrDefaultAsync();
+}
 }

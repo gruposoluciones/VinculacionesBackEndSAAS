@@ -21,7 +21,7 @@ public class LoginUserUseCase
     }
     public async Task<Result<LoginUserResponse>> Execute(LoginUserRequest request)
     {
-        var user = await _userRepository.FindByEmail(request.Email);
+        var user = await _userRepository.FindUserForLogin(request.Email);
         if (user == null)
         {
             return Result<LoginUserResponse>.Fail("Credenciales inválidas", ResultCode.Unauthorized);
@@ -30,14 +30,17 @@ public class LoginUserUseCase
         {
             return Result<LoginUserResponse>.Fail("Credenciales inválidas", ResultCode.Unauthorized);
         }
-
-        var token = _jwtService.GenerateToken(user.Id, user.Email);
+        
+        var token = _jwtService.GenerateToken(user.UserId,user.Username, user.RoleId,user.RoleName,user.EstablishmentId);
 
         return Result<LoginUserResponse>.Ok(new LoginUserResponse
         {
-            Id = user.Id,
+            Id = user.UserId,
             Username = user.Username,
-            Token = token
+            Token = token,
+            Role = user.RoleName,
+            RoleId = user.RoleId,
+            EstablishmentId = user.EstablishmentId
         });
     }
 }
