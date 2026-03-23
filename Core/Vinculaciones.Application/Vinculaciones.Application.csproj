@@ -10,4 +10,18 @@
     <ProjectReference Include="..\Vinculaciones.Domain\Vinculaciones.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="common\" />
+    <Folder Include="dtos\User\" />
+    <Folder Include="usecases\" />
+    <Folder Include="usecases\users\" />
+    <Folder Include="usecases\users\register\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+  </ItemGroup>
+
 </Project>
