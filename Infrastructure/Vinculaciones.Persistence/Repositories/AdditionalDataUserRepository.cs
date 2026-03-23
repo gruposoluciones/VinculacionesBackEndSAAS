@@ -33,7 +33,6 @@ public class AdditionalDataUserRepository : IAdditionalDataUserRepository
         };
         await _context.AdditionalDataUsers.AddAsync(AdditionalDataUserEntity);
         await _context.SaveChangesAsync();
-        var AdditionalDataUserModel = _mapper.Map<AdditionalDataUser>(AdditionalDataUserEntity);
-        return AdditionalDataUserModel;
+        return _mapper.Map<AdditionalDataUser>(AdditionalDataUserEntity);
     }
 }

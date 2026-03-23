@@ -31,8 +31,7 @@ public class UserRepository : IUserRepository
         await _context.Users.AddAsync(UserEntity);
         await _context.SaveChangesAsync();
 
-        var UserModel = _mapper.Map<User>(UserEntity);
-        return UserModel;
+        return _mapper.Map<User>(UserEntity);
     }
 
     public async Task<bool> ExistsByEmail(string email)
