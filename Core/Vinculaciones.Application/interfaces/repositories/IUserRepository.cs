@@ -11,5 +11,5 @@ public interface IUserRepository
     Task<bool> ExistsByUsername(string username);
     Task<User?> CreateAsync(CreateUserDto request);
     Task<User?> FindByEmail(string email);
-    Task<AuthUserDto> FindUserForLogin(string email);
+    Task<AuthUserDto?> FindUserForLogin(string email);
 }
