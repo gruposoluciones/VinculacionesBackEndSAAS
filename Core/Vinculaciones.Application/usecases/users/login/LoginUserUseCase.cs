@@ -3,6 +3,7 @@ using Vinculaciones.Api.common;
 using Vinculaciones.Application.common;
 using Vinculaciones.Application.interfaces.repositories;
 using Vinculaciones.Application.interfaces.services;
+using Vinculaciones.Domain.Entities;
 
 namespace Vinculaciones.Application.usecases.users.login;
 
@@ -31,16 +32,16 @@ public class LoginUserUseCase
             return Result<LoginUserResponse>.Fail("Credenciales inválidas", ResultCode.Unauthorized);
         }
         
-        var token = _jwtService.GenerateToken(user.UserId,user.Username, user.RoleId,user.RoleName,user.EstablishmentId);
+        var token = _jwtService.GenerateToken(user.UserId,user.Username);
 
         return Result<LoginUserResponse>.Ok(new LoginUserResponse
         {
             Id = user.UserId,
             Username = user.Username,
             Token = token,
-            Role = user.RoleName,
-            RoleId = user.RoleId,
-            EstablishmentId = user.EstablishmentId
+            Roles = user.Roles,
+            Establishments = user.Establishments,
+            Menus = user.Menus
         });
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Vinculaciones.Application.dtos.User;
 using Vinculaciones.Persistence.Entities;
 
 namespace Vinculaciones.Persistence;

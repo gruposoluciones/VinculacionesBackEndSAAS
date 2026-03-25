@@ -16,7 +16,7 @@ public class JwtService : IJwtService
         _config = config;
     }
 
-    public string GenerateToken(long userId, string username,long roleId,string roleName,long establishmentId)
+    public string GenerateToken(long userId, string username)
     {
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_config["Jwt:Key"]!)
@@ -31,13 +31,6 @@ public class JwtService : IJwtService
         {
             new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             new Claim(ClaimTypes.Name, username),
-
-            // Rol (para Authorize)
-            new Claim(ClaimTypes.Role, roleName),
-
-            // Datos adicionales
-            new Claim("roleId", roleId.ToString()),
-            new Claim("establishmentId", establishmentId.ToString())
         };
 
         var token = new JwtSecurityToken(

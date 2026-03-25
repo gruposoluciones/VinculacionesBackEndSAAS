@@ -59,27 +59,15 @@ public class UserRepository : IUserRepository
 
     public async Task<AuthUserDto?> FindUserForLogin(string email)
 {
-    return await (
-        from u in _context.Users
-        join uer in _context.UsersEstablishmentsRoles
-            on u.Id equals uer.UserId
-        join r in _context.Roles
-            on uer.RoleId equals r.Id
-
-        where u.Email == email
-            && u.Enabled == true
-            && uer.Enabled == true
-
-        select new AuthUserDto
-        {
-            UserId = u.Id,
-            Username = u.Username,
-            Password = u.Password,
-
-            RoleId = r.Id,
-            RoleName = r.Name,
-            EstablishmentId = uer.EstablecimientoId
-        }
-    ).FirstOrDefaultAsync();
+    /* return await _context.Set<AuthUserDto>()
+    .FromSqlRaw("SELECT * FROM get_user_with_permissions({0})", email)
+    .AsNoTracking()
+    .FirstOrDefaultAsync(); */
+    return await _context.Database
+    .SqlQuery<AuthUserDto>(
+        $"SELECT * FROM get_user_with_permissions({email})"
+    )
+    .AsNoTracking()
+    .FirstOrDefaultAsync();
 }
 }
