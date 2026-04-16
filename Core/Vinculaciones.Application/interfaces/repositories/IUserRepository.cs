@@ -12,4 +12,5 @@ public interface IUserRepository
     Task<User?> CreateAsync(CreateUserDto request);
     Task<User?> FindByEmail(string email);
     Task<AuthUserDto?> FindUserForLogin(string email);
+    Task<List<PesquisaUserDto>?> ListPesquisasByEstablishmentId(int idEstablishment);
 }

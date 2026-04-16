@@ -58,12 +58,25 @@ public class UserRepository : IUserRepository
     }
 
     public async Task<AuthUserDto?> FindUserForLogin(string email)
-{
-    return await _context.Database
-    .SqlQuery<AuthUserDto>(
-        $"SELECT * FROM get_user_with_permissions({email})"
-    )
-    .AsNoTracking()
-    .FirstOrDefaultAsync();
-}
+    {
+        return await _context.Database
+        .SqlQuery<AuthUserDto>(
+            $"SELECT * FROM get_user_with_permissions({email})"
+        )
+        .AsNoTracking()
+        .FirstOrDefaultAsync();
+    }
+
+    public async Task<List<PesquisaUserDto>?> ListPesquisasByEstablishmentId(int idEstablishment)
+    {
+        var pesquisas = await _context.Database
+        .SqlQueryRaw<PesquisaUserDto>(
+            "SELECT * FROM sp_list_pesquisas_enabled_by_establishment_id({0})",
+            idEstablishment
+        )
+        .AsNoTracking()
+        .ToListAsync();
+
+        return pesquisas;
+    }
 }

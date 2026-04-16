@@ -3,6 +3,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Vinculaciones.Application.gateways;
 using Vinculaciones.Application.gateways.Auth;
+using Vinculaciones.Application.gateways.Pesquisas;
 using Vinculaciones.Application.mappers;
 using Vinculaciones.Application.usecases.users.register;
 namespace Vinculaciones.Application;
@@ -20,6 +21,7 @@ public static class DependencyInjection
             services.AddScoped(useCase);
 
         services.AddScoped<IAuthGateway, AuthGateway>();
+        services.AddScoped<IPesquisasGateway, PesquisasGateway>();
         services.AddAutoMapper(typeof(UserMappingProfile).Assembly);
         return services;
     }
